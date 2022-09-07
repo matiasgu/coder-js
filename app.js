@@ -15,7 +15,6 @@ while (lista != 'esc') {
     lista = prompt('ingrese producto y finalizar con -esc-')
 }
 alert(`su lista de producto es : ${producto}`)
-*/
 
 let montoPagar = prompt('ingrese monto a pagar')
 let formaPago = prompt('ingrese T si para con targeta' + '\n' + 'ingrese E si paga con efectivo')
@@ -38,3 +37,90 @@ else {
     alert('la opcion ingresada es incorrecta')
 }
 
+*/
+const productos = [
+    {nombre: 'coca cola' , precio: 250},
+    {nombre: 'fanta' , precio: 250},
+    {nombre: 'fernet branca' , precio: 1300},
+    {nombre: 'vino toro' , precio: 200},
+    {nombre: 'viña de balbo' , precio: 350},
+    {nombre: 'manaos naranja' , precio: 190},
+    {nombre: 'vodka' , precio: 800},
+    {nombre: 'ginebra' , precio: 1200},
+    {nombre: 'wisky' , precio: 4000},
+]
+
+let carrito = []
+let seleccion= prompt('desa comprar alguno de los productos')
+
+while (seleccion != 'si' && seleccion != 'no') {
+    alert('por favor ingrese si o no')
+    seleccion = prompt('hola desea comprar algo si o no')
+    
+}
+
+if (seleccion == 'si') {
+    alert('a continuacion nuestra lista de productos')
+    let listaDeProdutos = productos.map(
+        (producto) => producto.nombre + ' ' + producto.precio + '$'
+    )
+    alert (listaDeProdutos.join('\n'))
+} else if (seleccion == 'no'){
+    alert('gracias por venir')
+}
+
+while (seleccion != 'no') {
+    let producto = prompt('agrega un producto a tu carrito')
+    let precio = 0
+
+    if (producto == 'coca cola' || producto == 'fanta' || producto == 'fernet branca' || producto == 'vino toro' || producto == ' viña de balbo' || producto == 'manaos naranja' || producto == 'vodka' || producto == 'ginebra' || producto == 'wisky') {
+        switch (producto) {
+            case 'coca cola':
+                precio = 250
+                break;
+            case 'fanta':
+                precio = 250
+                break;    
+            case 'fernet branca':
+                precio = 1300
+                break;
+            case 'vino toro':
+                precio = 200
+                break;
+            case 'viña de balbo':
+                precio = 350
+                break;
+            case 'manaos naranja':
+                precio = 190
+                break;
+            case 'vodka':
+                precio = 800
+                break;
+            case 'ginebra':
+                precio = 1200
+                break;
+            case 'wisky':
+                precio = 4000
+                break;        
+            default:
+                break;
+        }
+
+        let unidades = parseInt(prompt('cuantas unidades desea llevar'))
+
+        carrito.push({producto, unidades, precio})
+        console.log(carrito)
+    } else {
+        alert('no tenesmos ese producto')
+    }
+
+    seleccion = prompt('desea seguir comprando?')
+
+    while (seleccion === 'no') {
+        alert('gracias por la compra')
+        carrito.forEach((carritoFinal) => {
+            console.log(`producto: ${carritoFinal.producto}, unidades: ${carritoFinal.unidades}, total a pagar por producto ${carritoFinal.unidades * carritoFinal.precio}`)
+        })
+    break
+    }
+}
