@@ -38,6 +38,9 @@ else {
 }
 
 */
+
+//ESTO ES CARRITO DE COMPRA CON ARRAY
+/*
 const productos = [
     {nombre: 'coca cola' , precio: 250},
     {nombre: 'fanta' , precio: 250},
@@ -123,4 +126,72 @@ while (seleccion != 'no') {
         })
     break
     }
+}
+*/
+const productos = [
+    {
+        nombre: 'coca cola',
+        precio: 250,
+        imagen: './imagen/coca.png'
+    },
+    {
+        nombre: 'fanta',
+        precio: 250,
+        imagen: './imagen/coca.png'
+    },
+    {
+        nombre: 'fernet branca',
+        precio: 1300,
+        imagen: './imagen/coca.png'
+    },
+    {
+        nombre: 'vino toro',
+        precio: 200,
+        imagen: './imagen/coca.png'
+    },
+    {
+        nombre: 'viña de balbo',
+        precio: 350,
+        imagen: './imagen/coca.png'
+    },
+    {
+        nombre: 'manaos naranja',
+        precio: 190,
+        imagen: './imagen/coca.png'
+    },
+    {
+        nombre: 'vodka',
+        precio: 800,
+        imagen: './imagen/coca.png'
+    },
+    {
+        nombre: 'ginebra',
+        precio: 1200,
+        imagen: './imagen/coca.png'
+    },
+    {
+        nombre: 'wisky',
+        precio: 4000,
+        imagen: './imagen/coca.png'
+    },
+]
+
+const cardPoductos = () => {
+    let contenedor = document.getElementById('container')
+    productos.forEach((producto, indice) => {
+        let card = document.createElement('div')
+        card.classList.add('card', 'col-sm-12', 'col-lg-3', 'text-center')
+        card.innerHTML = `<img src="${producto.imagen}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">${producto.nombre}</h5>
+          <p class="card-text">${producto.precio}</p>
+          <a href="#" class="btn btn-primary" onClick="agregarAlcarrito()">Agregar al Carrito</a>
+        </div>`
+        contenedor.appendChild(card)
+    })
+}
+cardPoductos()
+
+const agregarAlcarrito = () => {
+    alert('producto agregado al carrito')
 }
