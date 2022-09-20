@@ -10,3 +10,17 @@ h1{
     color: aliceblue;
     padding: 60px;
 }
+
+.card{
+    margin: 5px;
+    align-items: center;
+}
+#container{
+    justify-content: center;
+}
+.carrito{
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    background-color: brown;
+}
