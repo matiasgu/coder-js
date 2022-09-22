@@ -17,21 +17,29 @@
   </head>
   <body>
     <header>
-
       <h1>Dyvinorum Burguer</h1>
-
     </header>
 
     <div class="container">
-
       <div id="container" class="row"></div>
+    </div>
+    <div>
+      <div id="carrito-contenedor"></div>
+      <div>
+        <p class="precioProducto">
+          Precio total: $<span id="precioTotal">0</span>
+        </p>
+        
+      </div>
+
+      <div class="comprar">
+        <button id="comprar" class="btn btn-primary">
+          COMPRAR
+        </button>
+      </div>
 
     </div>
 
-    <div id="carrito"></div>
-    
-    <a name="card" ></a>
-    
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
       integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
@@ -44,5 +52,6 @@
     ></script>
 
     <script src="./app.js"></script>
+    <script src="./modal.js"></script>
   </body>
 </html>

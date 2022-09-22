@@ -2,6 +2,7 @@ const productos = [
     {
         id: 1,
         nombre: 'GRINGA',
+        cantidad: 1,
         descripcion:'Pan artesanal, Doble medallon de carne caseros, Queso Cheddar, Panceta, Salsa barbacoa, PAPAS FRITAS',
         precio: 800,
         imagen: './imagen/hambur.png'
@@ -9,6 +10,7 @@ const productos = [
     {
         id: 2,
         nombre: 'REGIONAL',
+        cantidad: 1,
         descripcion:'Pan artesanal, Doble medallon de carne caseros, Queso Tybo, Huevo frito, mayonesa, PAPAS FRITAS',
         precio: 800,
         imagen: './imagen/hambur.png'
@@ -16,6 +18,7 @@ const productos = [
     {
         id: 3,
         nombre: 'CHAMPIGNON',
+        cantidad: 1,
         descripcion:'Pan artesanal, Doble medallon de carne caseros, Queso CTybo, Aros de cebolla, Mayonesa, Champignon, PAPAS FRITAS',
         precio: 850,
         imagen: './imagen/hambur.png'
@@ -23,6 +26,7 @@ const productos = [
     {
         id: 4,
         nombre: 'AZUL',
+        cantidad: 1,
         descripcion:'Pan artesanal, Doble medallon de carne caseros, Queso azul, aros de ceebolla caramelizados, Salsa azul, PAPAS FRITAS',
         precio: 850,
         imagen: './imagen/hambur.png'
@@ -30,6 +34,7 @@ const productos = [
     {
         id: 5,
         nombre: 'TRIPLE QUESO',
+        cantidad: 1,
         descripcion:'Pan artesanal, Doble medallon de carne caseros, Queso Cheddar, Tybo, Azul, Mayonesa, PAPAS FRITAS',
         precio: 900,
         imagen: './imagen/hambur.png'
@@ -37,6 +42,7 @@ const productos = [
     {
         id: 6,
         nombre: 'VEGUI',
+        cantidad: 1,
         descripcion:'Pan artesanal, Doble medallon de soja, Queso Tybo, lechuga, tomate, huevo, PAPAS FRITAS',
         precio: 800,
         imagen: './imagen/hambur.png'
@@ -44,9 +50,23 @@ const productos = [
     
 ]
 
-const cardPoductos = () => {
-    let contenedor = document.getElementById('container')
-    productos.forEach((producto, indice) => {
+let contenedor = document.getElementById('container')
+
+const contenedorCarrito = document.getElementById('carrito-contenedor')
+
+//const cantidad = document.getElementById('cantidad')
+
+const precioTotal = document.getElementById('precioTotal')
+
+const comprar = document.getElementById('comprar')
+
+
+
+let carrito = []
+
+
+
+productos.forEach((producto) => {
         let card = document.createElement('div')
         card.classList.add('card', 'col-sm-12', 'col-lg-3', 'text-center')
         card.innerHTML = `<img src="${producto.imagen}" class="card-img-top" alt="...">
@@ -54,65 +74,107 @@ const cardPoductos = () => {
           <h5 class="card-title">${producto.nombre}</h5>
           <p class="card-text">${producto.descripcion}</p>
           <p class="card-text">${producto.precio}$</p>
-          <a href="#" class="btn btn-primary" onClick="agregarAlcarrito(${indice})">Agregar al Carrito</a>
-        </div>`
+          <button id="agregar${producto.id}" class="btn btn-primary">Agregar</button>`
+
         contenedor.appendChild(card)
-    })
-}
-cardPoductos()
 
-let carrito = []
-let divCarrito = document.getElementById("carrito")
+        const boton = document.getElementById(`agregar${producto.id}`)
 
-const agregarAlcarrito = (indice) => {
-    const indiceCarrito = carrito.findIndex((producto)=>{
-        producto.id === productos[indice].id 
-    })
-    if (indiceCarrito === -1) {
-        const productoAgregar = productos[indice]
-        productoAgregar.cantidad = 1
-        carrito.push(productoAgregar)
-        dibujarCarrito()
-    } else {
-        carrito[indiceCarrito].cantidad +=1
-        dibujarCarrito()
+        boton.addEventListener('click', () => {
+            agregarAlcarrito(producto.id)
+        })
     }
-}
+)
 
-let total = 0
 
-const dibujarCarrito = ()=>{
-    divCarrito.className = "carrito"
-    divCarrito.innerHTML = ""
-    if(carrito.length > 0){
-        carrito.forEach((producto, indice) => {
-            total = total + producto.precio * producto.cantidad
-            const carritoContainer = document.createElement("div")
-            carritoContainer.className = "producto-carrito"
-            carritoContainer.innerHTML = `
-            <img class="car-img" src="${producto.imagen}">
-            <div class="producto-details">${producto.nombre}</div>
-            <div class="producto-details">Catindad: ${producto.cantidad}</div>
-            <div class="producto-details">Precio: ${producto.precio}</div>
-            <div class="producto-details">Sub Tolal: ${producto.precio * producto.cantidad}</div>
-            <button class="btn btn-primary" id="remove-product" onclick="removeProduct(${indice})">Eliminar</button>`
 
-            divCarrito.appendChild(carritoContainer)
-        });
+
+const agregarAlcarrito = (prodId) => {
+    const existe = carrito.some (prod => prod.id === prodId)
+
+    if (existe){ 
+        const prod = carrito.map (prod => {
+            
+            if (prod.id === prodId){
+                prod.cantidad++
+            }
+        })
+    } else { 
+        const item = productos.find((prod) => prod.id === prodId)
         
-        const totalContainer = document.createElement("div")
-        totalContainer.className = "total-carrito"
-        totalContainer.innerHTML = `<div class= "total"> TOTAL $ ${total}</div>
-        <button class= "btn btn-primary finalizar" id= "finalizar" onClick= "finalizarCompra()"> FINALIZAR </button>
-        `
-        divCarrito.appendChild(totalContainer)
-
-    } else {
-        divCarrito.classList.remove("carrito")
+        carrito.push(item)
     }
+    
+    actualizarCarrito() 
+    
 }
 
-const removeProduct = ()=>{
+const eliminarDelCarrito = (prodId) => {
+    const item = carrito.find((prod) => prod.id === prodId)
+
+    const indice = carrito.indexOf(item)
+
     carrito.splice(indice, 1)
-    dibujarCarrito()
+
+    actualizarCarrito() 
+
+    console.log(carrito)
 }
+
+
+const actualizarCarrito = () => {
+
+    contenedorCarrito.innerHTML = ""
+    
+
+    carrito.forEach((prod) => {
+        const div = document.createElement('div')
+        div.className = ('productoEnCarrito')
+        div.innerHTML = `
+        <p>${prod.nombre}</p>
+        <p>Precio:$${prod.precio}</p>
+        <p>Cantidad: <span id="cantidad">${prod.cantidad}</span></p>
+        <button onclick="eliminarDelCarrito(${prod.id})" class="btn btn-primary">Eliminar</button>
+        `
+
+        contenedorCarrito.appendChild(div)
+        
+        //localStorage.setItem('carrito', JSON.stringify(carrito))
+
+    })
+
+    console.log(carrito)
+
+    precioTotal.innerText = carrito.reduce((acc, prod) => acc + prod.cantidad * prod.precio, 0)
+    
+
+}
+/*
+comprar.addEventListener('click', () => {
+    const comprar = () => {
+        const total = document.getElementById('precioTotal')[0].innerHTML
+        modal.carrito.innerHTML = ''
+        const formulario = `<form>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Retiro por local</label>
+          <label class="form-check-label" for="exampleCheck1">envio domicilio</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>`
+
+      modal.carrito.innerHTML = formulario
+    }
+
+    contenedorCarrito.appendChild(comprar)
+})
+*/
