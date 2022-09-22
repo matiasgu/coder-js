@@ -86,6 +86,10 @@ productos.forEach((producto) => {
     }
 )
 
+const ActualizarStronge = (carrito) => {
+    localStorage.setItem('carrito', JSON.stringify(carrito))
+}
+
 
 
 
@@ -139,7 +143,7 @@ const actualizarCarrito = () => {
 
         contenedorCarrito.appendChild(div)
         
-        //localStorage.setItem('carrito', JSON.stringify(carrito))
+        localStorage.setItem('carrito', JSON.stringify(carrito))
 
     })
 
