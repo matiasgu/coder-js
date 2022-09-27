@@ -85,7 +85,7 @@ productos.forEach((producto) => {
         })
     }
 )
-
+//ver si funciona
 const ActualizarStronge = (carrito) => {
     localStorage.setItem('carrito', JSON.stringify(carrito))
 }
@@ -153,12 +153,12 @@ const actualizarCarrito = () => {
     
 
 }
-/*
-comprar.addEventListener('click', () => {
-    const comprar = () => {
-        const total = document.getElementById('precioTotal')[0].innerHTML
-        modal.carrito.innerHTML = ''
-        const formulario = `<form>
+const agregarFormulario = () => {
+        //precioTotal = document.getElementById('precioTotal')[0].innerHTML
+        contenedorCarrito.innerHTML = ''
+        const formulario = document.createElement('div')
+        formulario.className = ('formulario')
+        formulario.innerHTML =`<form>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Email address</label>
           <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -175,10 +175,15 @@ comprar.addEventListener('click', () => {
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>`
+      contenedorCarrito.appendChild(formulario)
 
-      modal.carrito.innerHTML = formulario
+      
     }
 
-    contenedorCarrito.appendChild(comprar)
+
+comprar.addEventListener('click', () => {
+    
+
+    
+    agregarFormulario()
 })
-*/
