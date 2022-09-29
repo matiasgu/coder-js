@@ -153,6 +153,7 @@ const actualizarCarrito = () => {
     
 
 }
+/*
 const agregarFormulario = () => {
         //precioTotal = document.getElementById('precioTotal')[0].innerHTML
         contenedorCarrito.innerHTML = ''
@@ -160,30 +161,50 @@ const agregarFormulario = () => {
         formulario.className = ('formulario')
         formulario.innerHTML =`<form>
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          <label for="exampleInputEmail1" class="form-label">NOMBRE</label>
+          <input  class="form-control" id="nombre" aria-describedby="emailHelp">
+
+          <label for="exampleInputEmail1" class="form-label">DIRECCION DE ENVIO</label>
+          <input class="form-control" id="domicilio" aria-describedby="emailHelp">          
         </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
+
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">PAGA CON EFECTIVO</label>
         </div>
         <div class="mb-3 form-check">
           <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Retiro por local</label>
-          <label class="form-check-label" for="exampleCheck1">envio domicilio</label>
+          <label class="form-check-label" for="exampleCheck1">TRANSFERENCIA BANCARIA</label>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+
+        <button type="submit" class="btn btn-primary" onClick="enviarMensaje">ENVIAR DATOS POR WHATSAPP</button>
       </form>`
+
       contenedorCarrito.appendChild(formulario)
 
       
-    }
+    }*/
 
 
 comprar.addEventListener('click', () => {
-    
+    Swal.fire({
+        title: 'Genial!',
+        text: 'Haz clickeado el botón!',
+        icon: 'success',
+        confirmButtonText: 'Cool'
+})
+
 
     
-    agregarFormulario()
+    //agregarFormulario()
 })
+ /*
+const enviarMensaje = () => {
+    const nombreCliente = document.getElementById("nombre").value
+    const domicilioCliente = document.getElementById("domicilio").value
+    contenedorCarrito.innerHTML = ""
+    let msj = `<div class="msjFinal"> gracias ${nombreCliente} su pedido resa enviado a ${domicilioCliente} recibira un msj cuando salga por whatapp </div>`
+    contenedorCarrito.innerHTML = msj
+
+    contenedorCarrito.appendChild(msj)
+}*/
