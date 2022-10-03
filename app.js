@@ -1,4 +1,4 @@
-const productos = [
+/*const productos = [
     {
         id: 1,
         nombre: 'GRINGA',
@@ -48,7 +48,7 @@ const productos = [
         imagen: './imagen/hambur.png'
     },
     
-]
+]*/
 
 let contenedor = document.getElementById('container')
 
@@ -64,8 +64,31 @@ const comprar = document.getElementById('comprar')
 
 let carrito = []
 
+fetch("/data.json")
+.then ((res)=>res.json())
+.then ((data)=>{
+    data.forEach((producto)=>{
+        let card = document.createElement('div')
+        card.classList.add('card', 'col-sm-12', 'col-lg-3', 'text-center')
+        card.innerHTML = `<img src="${producto.imagen}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">${producto.nombre}</h5>
+          <p class="card-text">${producto.descripcion}</p>
+          <p class="card-text">${producto.precio}$</p>
+          <button id="agregar${producto.id}" class="btn btn-primary">Agregar</button>`
+
+        contenedor.appendChild(card)
+
+        const boton = document.getElementById(`agregar${producto.id}`)
+
+        boton.addEventListener('click', () => {
+            agregarAlcarrito(producto.id)
+        })
+    })
+})
 
 
+/*
 productos.forEach((producto) => {
         let card = document.createElement('div')
         card.classList.add('card', 'col-sm-12', 'col-lg-3', 'text-center')
@@ -90,7 +113,7 @@ const ActualizarStronge = (carrito) => {
     localStorage.setItem('carrito', JSON.stringify(carrito))
 }
 
-
+*/
 
 
 const agregarAlcarrito = (prodId) => {
