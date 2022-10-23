@@ -139,7 +139,7 @@ const agregarFormulario = () => {
         `
 
     contenedorCarrito.appendChild(formulario)
-    
+
     localStorage.setItem('carrito', JSON.stringify(carrito))
 
 }
@@ -159,8 +159,9 @@ const captura = ()=>{
         <br>Recibiras un msj al numero  <b>${telefono} </b> cuando nuestro cadete este en camino.
         <br>El total es <b> $ ${precioTotal} </b>` ,        
         icon: 'success',
-        confirmButtonText: 'GRACIAS POE TU COMPRA'
-
+        grow:'fullscreen',
+        confirmButtonText: 'GRACIAS POE TU COMPRA',
+        
     })   
     
 }
