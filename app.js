@@ -139,6 +139,8 @@ const agregarFormulario = () => {
         `
 
     contenedorCarrito.appendChild(formulario)
+    
+    localStorage.setItem('carrito', JSON.stringify(carrito))
 
 }
 
