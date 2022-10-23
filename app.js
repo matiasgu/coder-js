@@ -153,49 +153,13 @@ const captura = ()=>{
 
 
     Swal.fire({
-        title: `Gracias por tu compra ${nombreCliente} tu pedido sera envado a ${direccion}
-        recibiras un msj al numero ${telefono} cuando nuestro cadete este en camino.
-        el total es $ ${precioTotal}` ,        
+        title: `Gracias por tu compra  <b>${nombreCliente} </b> <br>Tu pedido sera enviado a  <b>${direccion} </b>
+        <br>Recibiras un msj al numero  <b>${telefono} </b> cuando nuestro cadete este en camino.
+        <br>El total es <b> $ ${precioTotal} </b>` ,        
         icon: 'success',
-        confirmButtonText: 'genial'
+        confirmButtonText: 'GRACIAS POE TU COMPRA'
+
     })   
     
 }
 
-
-/*
-function captura () {
-
-     
-    //let direccion = document.getElementById('domicilio').value
-    //let telefono = document.getElementById('telefono').value
-    //const Cliente1 = [nombre, direccion, telefono]
-
-    console.log(nombre)
-
-    //finalizarCompra(Cliente1)
-}
-
-/*
-function finalizarCompra(cliente){
-    console.log(`${cliente.nombre}`)
-    
-    Swal.fire({
-            title: `gracias ${Cliente1.nombre}`,
-            text: 'matias',
-            icon: 'success',
-            confirmButtonText: 'genial'
-        })
-}
-*/
-
-/*
-const enviarMensaje = () => {
-   const nombreCliente = document.getElementById("nombre").value
-   const domicilioCliente = document.getElementById("domicilio").value
-   contenedorCarrito.innerHTML = ""
-   let msj = `<div class="msjFinal"> gracias ${nombreCliente} su pedido resa enviado a ${domicilioCliente} recibira un msj cuando salga por whatapp </div>`
-   contenedorCarrito.innerHTML = msj
-
-   contenedorCarrito.appendChild(msj)
-}*/
