@@ -86,6 +86,7 @@ const actualizarCarrito = () => {
         div.className = ('productoEnCarrito')
 
         div.innerHTML = `<div class="productoElegido">
+        <img src="${prod.imagen}" alt="" class="imgSelec">
         <p>${prod.nombre}</p>
         <p>Precio:$${prod.precio}</p>
         <p>Cantidad: <span id="cantidad">${prod.cantidad}</span></p>
