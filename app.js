@@ -121,44 +121,44 @@ const ActualizarStronge = (carrito) => {
     localStorage.setItem('carrito', JSON.stringify(carrito))
 }
 
-const eliminarDelCarrito = (prodId) => {
-    const item = carrito.find((prod) => prod.id === prodId)
-
-    const indice = carrito.indexOf(item)
+const eliminarDelCarrito = (indice) =>{
 
     carrito.splice(indice, 1)
-
     actualizarCarrito()
-
-    console.log(carrito)
-
 
 }
 
 
 
-
 const actualizarCarrito = () => {
-
+    contenedorCarrito.className = "carritoCompra"
     contenedorCarrito.innerHTML = ""
 
-    carrito.forEach((prod) => {
+    carrito.forEach((prod, indice) => {
 
         const div = document.createElement('div')
 
         div.className = ('productoEnCarrito')
 
-        div.innerHTML = `
+        div.innerHTML = `<div class="productoElegido">
         <p>${prod.nombre}</p>
         <p>Precio:$${prod.precio}</p>
         <p>Cantidad: <span id="cantidad">${prod.cantidad}</span></p>
-        <button onclick="eliminarDelCarrito(${prod.id})" class="btn btn-primary">Eliminar</button>        
+        <button onclick="eliminarDelCarrito(${indice})" class="btn btn-primary">Eliminar</button> 
+        </div>
+               
         `
         contenedorCarrito.appendChild(div)
 
         localStorage.setItem('carrito', JSON.stringify(carrito))
 
     })
+    const botoncomprar = document.createElement("div")
+    botoncomprar.innerHTML=`<div class="botonFormulario">
+        <button onclick="agregarFormulario()" class="btn btn-primary">COMPRAR</button>
+        </div>`
+    contenedorCarrito.appendChild(botoncomprar)
+
     console.log(carrito)
 
     precioTotal.innerText = carrito.reduce((acc, prod) => acc + prod.cantidad * prod.precio, 0)
@@ -174,24 +174,23 @@ const agregarFormulario = () => {
 
     formulario.className = ('formulario')
 
-    formulario.innerHTML = `<form>
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">NOMBRE</label>
-          <input  class="form-control" id="nombre" aria-describedby="emailHelp">
+    formulario.innerHTML = `<div class="divFor">
+        <form>
+        
+        <label  class="form-label">NOMBRE</label>
+        <input  class="form-control" id="nombre" >
 
-          <label for="exampleInputEmail1" class="form-label">DIRECCION DE ENVIO</label>
-          <input class="form-control" id="domicilio" aria-describedby="emailHelp">          
-        </div>
+        <label for="exampleInputEmail1" class="form-label">DIRECCION DE ENVIO</label>
+        <input class="form-control" id="domicilio" aria-describedby="emailHelp">
 
-        <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">PAGA CON EFECTIVO</label>
+        <label for="exampleInputEmail1" class="form-label">TELEFONO DE CONTACTO</label>
+        <input class="form-control" id="telefono" aria-describedby="emailHelp">          
+        
+        </form>
         </div>
-        <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">TRANSFERENCIA BANCARIA</label>
-        </div>
-
+        <div class="botonFinalizar">
+        <button onclick="captura()" class="btn btn-primary">FINALIZAR COMPRAR</button>   
+        </div>     
         `
 
     contenedorCarrito.appendChild(formulario)
@@ -200,27 +199,52 @@ const agregarFormulario = () => {
 
 
 
+const captura = ()=>{
 
-comprar.addEventListener('click', () => {
+    const nombreCliente = document.getElementById("nombre").value;
+    const direccion = document.getElementById('domicilio').value
+    const telefono = document.getElementById('telefono').value
+    const preciofinal = document.getElementById('precioTotal').value
 
-    agregarFormulario()
 
-    comprar.innerHTML = "Finalizar Compra"
+    Swal.fire({
+        title: `Gracias por tu compra ${nombreCliente} tu pedido sera envado a ${direccion}
+        recibiras un msj al numero ${telefono} cuando nuestro cadete este en camino.
+        el total es ${preciofinal}` ,        
+        icon: 'success',
+        confirmButtonText: 'genial'
+    })
+    
+        
 
-    comprar.addEventListener('click', () => {
-        Swal.fire({
-            title: 'perfecto',
+}
+
+
+/*
+function captura () {
+
+     
+    //let direccion = document.getElementById('domicilio').value
+    //let telefono = document.getElementById('telefono').value
+    //const Cliente1 = [nombre, direccion, telefono]
+
+    console.log(nombre)
+
+    //finalizarCompra(Cliente1)
+}
+
+/*
+function finalizarCompra(cliente){
+    console.log(`${cliente.nombre}`)
+    
+    Swal.fire({
+            title: `gracias ${Cliente1.nombre}`,
             text: 'matias',
             icon: 'success',
             confirmButtonText: 'genial'
         })
-
-    })
-
-
-})
-
-
+}
+*/
 
 /*
 const enviarMensaje = () => {
