@@ -9,7 +9,7 @@ const comprar = document.getElementById('comprar')
 
 let carrito = []
 
-fetch('/data.json')
+fetch("/data.json")
 
     .then((res) => res.json())
 
