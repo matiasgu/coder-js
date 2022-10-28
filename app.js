@@ -13,7 +13,7 @@ const cors = require("cors")
 
 app.use(cors())
 
-fetch("/data.json")
+fetch("data.json")
 
     .then((res) => res.json())
 
