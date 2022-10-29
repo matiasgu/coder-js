@@ -9,9 +9,7 @@ const comprar = document.getElementById('comprar')
 
 let carrito = []
 
-const cors = require("cors")
 
-app.use(cors())
 
 fetch("data.json")
 
