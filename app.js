@@ -1,4 +1,54 @@
-
+let productos = [
+    {
+        id: 1,
+        nombre: "GRINGA",
+        cantidad: 1,
+        descripcion:"Pan artesanal, Doble medallon de carne caseros, Queso Cheddar, Panceta, Salsa barbacoa, PAPAS FRITAS",
+        precio: 800,
+        imagen: "./imagen/hambur.png"
+    },
+    {
+        id: 2,
+        nombre: "REGIONAL",
+        cantidad: 1,
+        descripcion:"Pan artesanal, Doble medallon de carne caseros, Queso Tybo, Huevo frito, mayonesa, PAPAS FRITAS",
+        precio: 800,
+        imagen: "./imagen/hambur.png"
+    },
+    {
+        id: 3,
+        nombre: "CHAMPIGNON",
+        cantidad: 1,
+        descripcion:"Pan artesanal, Doble medallon de carne caseros, Queso CTybo, Aros de cebolla, Mayonesa, Champignon, PAPAS FRITAS",
+        precio: 850,
+        imagen: "./imagen/hambur.png"
+    },
+    {
+        id: 4,
+        nombre: "AZUL",
+        cantidad: 1,
+        descripcion:"Pan artesanal, Doble medallon de carne caseros, Queso azul, aros de ceebolla caramelizados, Salsa azul, PAPAS FRITAS",
+        precio: 850,
+        imagen: "./imagen/hambur.png"
+    },
+    {
+        id: 5,
+        nombre: "TRIPLE QUESO",
+        cantidad: 1,
+        descripcion:"Pan artesanal, Doble medallon de carne caseros, Queso Cheddar, Tybo, Azul, Mayonesa, PAPAS FRITAS",
+        precio: 900,
+        imagen: "./imagen/hambur.png"
+    },
+    {
+        id: 6,
+        nombre: "VEGUI",
+        cantidad: 1,
+        descripcion:"Pan artesanal, Doble medallon de soja, Queso Tybo, lechuga, tomate, huevo, PAPAS FRITAS",
+        precio: 800,
+        imagen: "./imagen/hambur.png"
+    }
+    
+]
 let contenedor = document.getElementById('container')
 
 const contenedorCarrito = document.getElementById('carrito-contenedor')
@@ -10,14 +60,18 @@ const comprar = document.getElementById('comprar')
 let carrito = []
 
 
-
-fetch("data.json")
+/*
+fetch("./data.json", { mode: "no-cors" })
 
     .then((res) => res.json())
 
     .then((productos) => {
+    
 
-        productos.forEach((producto) => {
+        
+    }
+)*/
+productos.forEach((producto) => {
 
             let card = document.createElement('div')
 
@@ -61,8 +115,6 @@ fetch("data.json")
 
             actualizarCarrito()
         }
-    }
-)
 
 const ActualizarStronge = (carrito) => {
     localStorage.setItem('carrito', JSON.stringify(carrito))
@@ -163,7 +215,7 @@ const captura = ()=>{
         <br>El total es <b> $ ${precioTotal} </b>` ,        
         icon: 'success',
         grow:'fullscreen',
-        confirmButtonText: 'GRACIAS POE TU COMPRA',
+        confirmButtonText: 'GRACIAS POR TU COMPRA',
         
     })   
     
